@@ -18,27 +18,32 @@
 * Revision     Date                        Release Comment
 * --------  ----------  ------------------------------------------------------
 *   1.0     04/08/2019       Initial Release
-*   X.Y     MM/DD/YYYY  ** Short, 1 line description of changes to program **
+*   X.Y     04/10/2019  **There was a bug found by Mr.Main that I fixed.**
 *
 * Program Inputs
 * --------------
 *  Device                              Description
 * --------  ------------------------------------------------------------------
-* Keyboard    ** Describe User input(s); otherwise, EXPLICITY state: None **
+* Keyboard    ** None **
 *
 * Program Outputs
 * ---------------
 *  Device                            Description
 * --------  ------------------------------------------------------------------
-* Monitor    ** Describe Console display; otherwise, EXPLICITY state: None **
+* Monitor    ** None **
 *
 * File Methods
 * ------------
 *     Name                             Description
 * ------------  --------------------------------------------------------------
 * main          Program entry point method
-***** Add name and description of any other methods defined in this file****
-*
+
+*void getUser();   It;ll display the user answer from the prompt into the main
+void getNum(int *, int);    It'll ask for the numbers of movies watched by students.
+void getSource(int *, int);   Itl'll count the min value and minIndex of the array.
+double findAverage(int *, int);   It'll find the average of the anumbers of movies watched by students.
+double findMed(int *, int); It'll find the Median number of the movies watched by students.
+int findMod(int *, int); it's display the mod through counting.
 ******************************************************************************
 */
 // External Definition files
@@ -65,15 +70,14 @@ int findMod(int *, int);
 *
 * Method Description
 * ------------------
-* ** For method main(), describe the application program from the client's
-* ** perspective, which includes any User inputs required and expected
-* ** Console output, and any other pertinent information about the program.
-* ** For other methods, describe the functionality of the method.
-* ** This WILL take several lines for a satisfactory description!
-*
+* ** For method main(), it simply calls the method wich holds all the 
+prompts to ask from the user about the movies of each student watched 
+and display it on the console to execute the code.
+
+
 * Preconditions
 * -------------
-* ** Describe any assumptions made by the method; otherwise specify: None **
+* ** None **
 *
 * Method Arguments
 * ----------------
@@ -117,6 +121,32 @@ int main()
 	return programStatus;
 
 }
+/******************************************************************************
+ *      Class: MachCalc                                                       *
+ *     Method: getUser                                                        *
+ * Method Type: void                                                          *
+ *                                                                            *
+ * Parameters                                                                 *
+ * ----------                                                                 *
+ * None                                                                       *
+ *                                                                            *
+ * RETurn                                                                     *
+ * Value                              Description                             *
+ * ------  -------------------------------------------------------------------*
+ * Value token from the prompt and store it into an array and display the 
+ result on the console and made sure that the entry is qualified and is 
+ *integer between 3-10 using a do while loop.                            
+ *                                                                            *
+ * Methods Called                                                             *
+ * --------------                                                             *
+ * None                                                                       *
+ *                                                                            *
+ * Function Description                                                       *
+ * --------------------                                                       *
+ * This method RETurns the object's circumference.                            *
+ *                                                                            *
+ ******************************************************************************
+ */
 void getUser() {
 	// Uninitialized Variable Declarations
 	int *allMovies, mod, student;
@@ -147,21 +177,79 @@ void getUser() {
 
 	cout << "The result is: \n";
 	cout << fixed << showpoint << setprecision(2);
-	cout << "Average: " << avg << endl;
-	cout << "Median:  " << med << endl;
-	cout << "Mode:    " << mod << endl;
+	cout << "The average is: " << avg << endl;
+	cout << "The median is: " << med << endl;
+	cout << "The mode is: " << mod << endl;
 	
 }
+/******************************************************************************
+ *      Class: MachinCalc                                                     *
+ *     Method: getNum                                                         *
+ * Method Type: void                                                          *
+ *                                                                            *
+ * Parameters                                                                 *
+ * ----------                                                                 *
+ * Array pointer   
+ * Int
+ *                                                                            *
+ * RETurn                                                                     *
+ * Value                              Description                             *
+ * ------  -------------------------------------------------------------------*
+ * Print out the prompted result on the screen.      
+ *                                                                            *
+ * Methods Called                                                             *
+ * --------------                                                             *
+ * In getUser                                                                 *
+ *                                                                            *
+ * Function Description                                                       *
+ * --------------------                                                       *
+ * Through using a for loop, it'll get the data from the prompt and store
+ it into an array.                           *
+ *                                                                            *
+ ******************************************************************************
+ */
 void getNum(int *array, int size) {
 
 		cout << "Enter the number of movies watched (3-10).\n";
 	
 			for (int i = 0; i < size; i++)
 			{
-				cout << "The student #" << (i + 1) << ": ";
+				cout << "The student # " << (i + 1) << ": ";
 				cin >> *(array + i);
 			}
 }
+/******************************************************************************
+ *      Class: MachinCalc                                                     *
+ *     Method: getSource                                                      *
+ * Method Type: void                                                          *
+ *                                                                            *
+ * Parameters                                                                 *
+ * ----------                                                                 *
+ * Array pointer 
+ * Int
+ *                                                                            *
+ * RETurn                                                                     *
+ * Value                              Description                             *
+ * ------  -------------------------------------------------------------------*
+ * Calculate the minimum value of the elements inside the array and the 
+ minimum index of the elements also to start doing the rest of the calcualtions
+ * on the next methods.
+ *                                                                            *
+ * Methods Called                                                             *
+ * --------------                                                             *
+ * getUser                                                                    *
+ *                                                                            *
+ * Function Description                                                       *
+ * --------------------                                                       *
+ * Passed two parameters one as a pointer array and the second as a size.
+ * Through the using for loop, the method will determine the minimum value
+ of all the elements inside the array and hold it as a local variable called
+ minValue and also calculates the minimum index and holds it into another 
+ local variable called minI, This method will prepare the program going to
+ the next step of calcualting the average and the median and the mod.
+ *                                                                            *
+ ******************************************************************************
+ */
 void getSource(int *array, int size) {
 
 	int g, minVal, minI;
@@ -181,9 +269,38 @@ void getSource(int *array, int size) {
 		}
 
 		*(array + minI) = *(array + g);
-		*(array + g) = minI;
+		*(array + g) = minI; 
+		*(array + g) = minVal;
 	}
 }
+/******************************************************************************
+ *      Class: MachinCalc                                                     *
+ *     Method: findAverage                                                    *
+ * Method Type:  double                                                       *
+ *                                                                            *
+ * Parameters                                                                 *
+ * ----------                                                                 *
+ * pointer array
+   Int                                                                        *
+ *                                                                            *
+ * RETurn                                                                     *
+ * Value                              Description                             *
+ * ------  -------------------------------------------------------------------*
+ * double   The method calculates the average of the numbers of the movies
+ each students
+ watched and returns the average calculated.                                  *
+ *                                                                            *
+ * Methods Called                                                             *
+ * --------------                                                             *
+ * getUser                                                                    *
+ *                                                                            *
+ * Function Description                                                       *
+ * --------------------                                                       *
+ * This method will generate the average number of the movies watched by each
+ * student by getting the sum of them first and deviding it by the size.
+ *                                                                            *
+ ******************************************************************************
+ */
 double findAverage(int *array, int size) {
 
 	double sum = 0;
@@ -193,7 +310,35 @@ double findAverage(int *array, int size) {
 	}
 	return sum / size;
 }
-
+/******************************************************************************
+ *      Class: MachinCalc                                                     *
+ *     Method: findMed                                                        *
+ * Method Type: double                                                        *
+ *                                                                            *
+ * Parameters                                                                 *
+ * ----------                                                                 *
+ * Pointer array
+ * Int
+ *                                                                            *
+ * RETurn                                                                     *
+ * Value                              Description                             *
+ * ------  -------------------------------------------------------------------*
+ * double  Find the median as number required to calculate the statistical
+ purposes.
+ *
+ *                                                                            *
+ * Methods Called                                                             *
+ * --------------                                                             *
+ * getUser                                                                       *
+ *                                                                            *
+ * Function Description                                                       *
+ * --------------------                                                       *
+ * This Method uses the informations token from the user in the previous steps 
+ * to calculate the median number of the movies watched by the students and will
+ display it on the console.
+ *                                                                            *
+ ******************************************************************************
+ */
 double findMed(int *array, int size) {
 
 	int mid = (size - 1) / 2;
@@ -208,10 +353,38 @@ double findMed(int *array, int size) {
 		med = *(array + mid);
 	return med;
 }
+/******************************************************************************
+ *      Class: MachinCalc                                                     *
+ *     Method: finMod                                                         *
+ * Method Type:  int                                                          *
+ *                                                                            *
+ * Parameters                                                                 *
+ * ----------                                                                 *
+ * Pointer array
+ *  Int
+ *                                                                            *
+ * RETurn                                                                     *
+ * Value                              Description                             *
+ * ------  -------------------------------------------------------------------*
+ * Int  It'll display the mod in which calculated in this method.             *
+ *                                                                            *
+ * Methods Called                                                             *
+ * --------------                                                             *
+ * getUser                                                                    *
+ *                                                                            *
+ * Function Description                                                       *
+ * --------------------                                                       *
+ * This method counts each time  it goes to the loop and used the for loop
+ * of values is the value that occurs most often or with the
+greatest frequency to determin the mode of the array in which value in the 
+array occurs most often.
+ *                                                                            *
+ ******************************************************************************
+ */
 int findMod(int *array, int size) {
 
 	int mod, last;
-	int count = -0;
+	int count = 0;
 
 	mod = last = 0;
 	for (int i = 0; i < size; i++)
