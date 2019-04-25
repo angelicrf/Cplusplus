@@ -52,7 +52,6 @@
 using namespace std; // Announces to the compiler that members of the
 					 // namespace "std" are utilized in this program
 
-
 // Method Prototypes
 // -----------------
 // None
@@ -63,6 +62,7 @@ using namespace std; // Announces to the compiler that members of the
 // for the sole purpose to show when it is invoked. *
 //                                                  *
 //***************************************************
+const double NumDays::value = 8.0;
 NumDays::NumDays()
 {
 	//number = 0.0;
@@ -79,6 +79,7 @@ NumDays::NumDays()
 //***************************************************
 double NumDays::addHours(double pNumber)
 {
+
 	double added = pNumber + getHours();
 	setHours(added);
 	return added;
@@ -90,11 +91,10 @@ double NumDays::addHours(double pNumber)
 //                                              *
 //***********************************************
 NumDays::NumDays(double pNumber)
-{
-	setDays(pNumber);
+{ 
+	
+	setHours(abs(pNumber));
 }
-
-
 //***************************************************
 // Class Destructor                                 *
 //                                                  *
@@ -106,7 +106,6 @@ NumDays::~NumDays()
 {
 
 }
-
 //********************************************* 
 // Method: setName(double pName)             *
 //                                            *
@@ -115,7 +114,7 @@ NumDays::~NumDays()
 //*********************************************
 void NumDays::setHours(double pNumber)
 {
-		number = pNumber / 8.0;
+		number = pNumber;
 }
 //********************************************* 
 // Method: getHours()                          *
@@ -126,37 +125,23 @@ void NumDays::setHours(double pNumber)
 //*********************************************
 int NumDays::getHours()
 {
-	return static_cast<int>(number * 8);
+	return number;
 }
-
 //********************************************* 
 // Method: getDays()                          
 //                                            *
 // Retrieves the "NumDays" object's name as a  *
 // "double" object.     
-
 //*********************************************
 double NumDays::getDays()
 {
-	return number;
+	return number / value;
 }
-
-
-//********************************************* 
-// Method: setDays()                          
-                      
-//Modifies the "NumDays" object's days                                            *
-//*********************************************
-void NumDays::setDays(double pNumber)
-{
-	number = pNumber;
-}
-//********************************************* 
+// ******************************************* 
 // Method: operator++()                                                                    
 //*********************************************
 NumDays NumDays::operator++() 
 {
-	
 	setHours(getHours() + 1);
 	return *this;
 }
@@ -186,18 +171,24 @@ NumDays NumDays::operator++(int)
 NumDays NumDays::operator--(int)
 {
 	NumDays pr = *this;
-
 	setHours(getHours() + 1);
 	return pr;
 }
 //********************************************* 
-// Method: operator+ (NumDays one , NumDays two)
+// Method: operator-= (NumDays one)
 
-                                           
+//*********************************************
+NumDays NumDays::operator-= (NumDays one)
+{
+	number -= one.getHours();
+	
+	return *this;
+}
+//********************************************* 
+// Method: operator+ (NumDays one , NumDays two)                                         
 //*********************************************
 NumDays operator+ (NumDays one , NumDays two)
 {
-
 	return NumDays(one.getHours() + two.getHours());
 }
 //********************************************* 
@@ -206,7 +197,6 @@ NumDays operator+ (NumDays one , NumDays two)
 //*********************************************
 NumDays operator- (NumDays one, NumDays two)
 {
-
 	return NumDays(one.getHours() - two.getHours());
 }
 //********************************************* 

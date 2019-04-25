@@ -45,15 +45,17 @@ using namespace std;  // Announces to the compiler that members of the namespace
 */
 class NumDays
 {
-protected:
+private:
 	// 1. Non-static (instance) Variable Declarations
 	double number;
+	static const double value;
 	
 
 public:
 	// 1. Constructors
 	//    A. Parameterless Constructor
 	//       Overrides the compiler's "Default" Constructor
+	
 	NumDays();
 	//    B. Conversion Constructor
 	//       Creates a "NumDays" object from the specified name of the number
@@ -65,7 +67,6 @@ public:
 	void setHours(double pNumber);
 	int getHours();
 
-	void setDays(double pNumber);
 	double getDays();
 	double addHours(double pNumber);
 
@@ -75,6 +76,8 @@ public:
 
 	NumDays operator++(int);
 	NumDays operator--(int);
+	NumDays operator-=(NumDays c1);
+
 
 	friend NumDays operator+(NumDays c1, NumDays c2);
 	friend NumDays operator-(NumDays c1, NumDays c2);

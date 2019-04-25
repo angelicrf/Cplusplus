@@ -122,7 +122,7 @@ using namespace std; // Announces to the compiler that members of the namespace
 
 	
 	cout << "    Sue's hours Used: " << hoursUsed_Sue << endl;
-	hoursWorked_Sue = (hoursWorked_Sue - hoursUsed_Sue);
+	hoursWorked_Sue -= hoursUsed_Sue;
 	cout << "Sue's adjusted hours: " << hoursWorked_Sue << endl;
 	cout << "Adjusted Total hours: " << (hoursWorked_John + hoursWorked_Sue)
 			<< endl << endl;

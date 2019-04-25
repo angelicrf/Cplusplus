@@ -1,4 +1,5 @@
 ﻿  ClientProgram.cpp
   NumDays.cpp
+d:\prog113\refahiyat_project3\numdays.cpp(128): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
   Generating Code...
   Refahiyat_Project3.vcxproj -> D:\Prog113\Refahiyat_Project3\x64\Debug\Refahiyat_Project3.exe
